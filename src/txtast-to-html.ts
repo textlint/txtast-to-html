@@ -12,7 +12,7 @@ const omitKeyReplacer = (key: string, value: any) => {
     }
     return value;
 };
-export const openNode = (txtNode: TxtNode | TxtParentNode): string => {
+export const defaultOpenNode = (txtNode: TxtNode | TxtParentNode): string => {
     const metadata = JSON.stringify(txtNode, omitKeyReplacer);
     if (!txtNode.children) {
         return `<${txtNode.type} data-metadata="${escapeGoat.escape(metadata)}">${escapeGoat.escape(txtNode.raw)}</${
@@ -21,7 +21,7 @@ export const openNode = (txtNode: TxtNode | TxtParentNode): string => {
     }
     return `<${txtNode.type}>`;
 };
-export const closeNode = (txtNode: TxtNode | TxtParentNode): string => {
+export const defaultCloseNode = (txtNode: TxtNode | TxtParentNode): string => {
     if (!txtNode.children) {
         return "";
     }
@@ -34,7 +34,9 @@ export interface ToHTMLOptions {
     closeNode(txtNode: TxtNode | TxtParentNode): string;
 }
 
-export const toHTML = (txtAST: TxtParentNode): string => {
+export const toHTML = (txtAST: TxtParentNode, options?: ToHTMLOptions): string => {
+    const openNode = options && options.openNode ? options.openNode : defaultOpenNode;
+    const closeNode = options && options.closeNode ? options.closeNode : defaultCloseNode;
     const traverseNodeList: string[] = [];
     traverse(txtAST, {
         enter(node: TxtParentNode | TxtNode) {
