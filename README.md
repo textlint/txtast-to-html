@@ -2,6 +2,8 @@
 
 TxtAST to HTML string.
 
+This HTML string aim to be used as [Custom Elements](https://www.w3.org/TR/custom-elements/ "Custom Elements").
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
@@ -23,37 +25,37 @@ text [link](http://example.com).
 `);
 const HTMLString = toHTML(txtAST);
 /*
-<Document><Header><Str data-metadata="{&quot;value&quot;:&quot;Title&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:1,&quot;column&quot;:2},&quot;end&quot;:{&quot;line&quot;:1,&quot;column&quot;:7}},&quot;range&quot;:[2,7]}">Title</Str></Header><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;text &quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:3,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:3,&quot;column&quot;:5}},&quot;range&quot;:[17,22]}">text </Str><Link><Str data-metadata="{&quot;value&quot;:&quot;link&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:3,&quot;column&quot;:6},&quot;end&quot;:{&quot;line&quot;:3,&quot;column&quot;:10}},&quot;range&quot;:[23,27]}">link</Str></Link><Str data-metadata="{&quot;value&quot;:&quot;.&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:3,&quot;column&quot;:31},&quot;end&quot;:{&quot;line&quot;:3,&quot;column&quot;:32}},&quot;range&quot;:[48,49]}">.</Str></Paragraph><List><ListItem><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;list1&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:5,&quot;column&quot;:2},&quot;end&quot;:{&quot;line&quot;:5,&quot;column&quot;:7}},&quot;range&quot;:[53,58]}">list1</Str></Paragraph></ListItem><ListItem><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;list2&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:6,&quot;column&quot;:2},&quot;end&quot;:{&quot;line&quot;:6,&quot;column&quot;:7}},&quot;range&quot;:[61,66]}">list2</Str></Paragraph></ListItem></List></Document>
+<txtast-document><txtast-header><txtast-str data-metadata="{&quot;value&quot;:&quot;Title&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:1,&quot;column&quot;:2},&quot;end&quot;:{&quot;line&quot;:1,&quot;column&quot;:7}},&quot;range&quot;:[2,7]}">Title</txtast-str></txtast-header><txtast-paragraph><txtast-str data-metadata="{&quot;value&quot;:&quot;text &quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:3,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:3,&quot;column&quot;:5}},&quot;range&quot;:[17,22]}">text </txtast-str><txtast-link><txtast-str data-metadata="{&quot;value&quot;:&quot;link&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:3,&quot;column&quot;:6},&quot;end&quot;:{&quot;line&quot;:3,&quot;column&quot;:10}},&quot;range&quot;:[23,27]}">link</txtast-str></txtast-link><txtast-str data-metadata="{&quot;value&quot;:&quot;.&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:3,&quot;column&quot;:31},&quot;end&quot;:{&quot;line&quot;:3,&quot;column&quot;:32}},&quot;range&quot;:[48,49]}">.</txtast-str></txtast-paragraph><txtast-list><txtast-listitem><txtast-paragraph><txtast-str data-metadata="{&quot;value&quot;:&quot;list1&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:5,&quot;column&quot;:2},&quot;end&quot;:{&quot;line&quot;:5,&quot;column&quot;:7}},&quot;range&quot;:[53,58]}">list1</txtast-str></txtast-paragraph></txtast-listitem><txtast-listitem><txtast-paragraph><txtast-str data-metadata="{&quot;value&quot;:&quot;list2&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:6,&quot;column&quot;:2},&quot;end&quot;:{&quot;line&quot;:6,&quot;column&quot;:7}},&quot;range&quot;:[61,66]}">list2</txtast-str></txtast-paragraph></txtast-listitem></txtast-list></txtast-document>
 */
 ```
 
 Simplify output:
 
 ```html
-<Document>
-    <Header>
-        <Str>Title</Str>
-    </Header>
-    <Paragraph>
-        <Str>text</Str>
-        <Link>
-        <Str>link</Str>
-        </Link>
-        <Str>.</Str>
-    </Paragraph>
-    <List>
-        <ListItem>
-            <Paragraph>
-                <Str>list1</Str>
-            </Paragraph>
-        </ListItem>
-        <ListItem>
-            <Paragraph>
-                <Str>list2</Str>
-            </Paragraph>
-        </ListItem>
-    </List>
-</Document>
+<txtast-document>
+    <txtast-header>
+        <txtast-str>Title</txtast-str>
+    </txtast-header>
+    <txtast-paragraph>
+        <txtast-str>text</txtast-str>
+        <txtast-link>
+            <txtast-str>link</txtast-str>
+        </txtast-link>
+        <txtast-str>.</txtast-str>
+    </txtast-paragraph>
+    <txtast-list>
+        <txtast-listitem>
+            <txtast-paragraph>
+                <txtast-str>list1</txtast-str>
+            </txtast-paragraph>
+        </txtast-listitem>
+        <txtast-listitem>
+            <txtast-paragraph>
+                <txtast-str>list2</txtast-str>
+            </txtast-paragraph>
+        </txtast-listitem>
+    </txtast-list>
+</txtast-document>
 ```
 
 ## Changelog

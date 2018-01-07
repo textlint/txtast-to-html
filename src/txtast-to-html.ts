@@ -6,6 +6,7 @@ const escapeGoat: {
     unescape(html: string): string;
 } = require("escape-goat");
 const omitKeyList = ["type", "children", "parent", "raw"];
+const Prefix = "txtast";
 const omitKeyReplacer = (key: string, value: any) => {
     if (omitKeyList.indexOf(key) !== -1) {
         return undefined;
@@ -14,18 +15,20 @@ const omitKeyReplacer = (key: string, value: any) => {
 };
 export const defaultOpenNode = (txtNode: TxtNode | TxtParentNode): string => {
     const metadata = JSON.stringify(txtNode, omitKeyReplacer);
+    const nodeType = txtNode.type.toLowerCase();
     if (!txtNode.children) {
-        return `<${txtNode.type} data-metadata="${escapeGoat.escape(metadata)}">${escapeGoat.escape(txtNode.raw)}</${
-            txtNode.type
-        }>`;
+        return `<${Prefix}-${nodeType} data-metadata="${escapeGoat.escape(metadata)}">${escapeGoat.escape(
+            txtNode.raw
+        )}</${Prefix}-${nodeType}>`;
     }
-    return `<${txtNode.type}>`;
+    return `<${Prefix}-${nodeType}>`;
 };
 export const defaultCloseNode = (txtNode: TxtNode | TxtParentNode): string => {
     if (!txtNode.children) {
         return "";
     }
-    return `</${txtNode.type}>`;
+    const nodeType = txtNode.type.toLowerCase();
+    return `</${Prefix}-${nodeType}>`;
 };
 
 export interface ToHTMLOptions {

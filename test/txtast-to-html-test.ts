@@ -27,21 +27,23 @@ text [link](http://example.com).
 `);
         const HTMLString = toHTML(txtAST, {
             openNode(txtNode: TxtNode | TxtParentNode): string {
+                const nodeType = txtNode.type.toLowerCase();
                 if (!txtNode.children) {
-                    return `<${txtNode.type}>${txtNode.raw}</${txtNode.type}>`;
+                    return `<txtast-${nodeType}>${txtNode.raw}</txtast-${nodeType}>`;
                 }
-                return `<${txtNode.type}>`;
+                return `<txtast-${nodeType}>`;
             },
             closeNode(txtNode: TxtNode | TxtParentNode): string {
+                const nodeType = txtNode.type.toLowerCase();
                 if (!txtNode.children) {
                     return "";
                 }
-                return `</${txtNode.type}>`;
+                return `</txtast-${nodeType}>`;
             }
         });
         assert.strictEqual(
             HTMLString,
-            `<Document><Header><Str>Title</Str></Header><Paragraph><Str>text </Str><Link><Str>link</Str></Link><Str>.</Str></Paragraph><List><ListItem><Paragraph><Str>list1</Str></Paragraph></ListItem><ListItem><Paragraph><Str>list2</Str></Paragraph></ListItem></List></Document>`
+            `<txtast-document><txtast-header><txtast-str>Title</txtast-str></txtast-header><txtast-paragraph><txtast-str>text </txtast-str><txtast-link><txtast-str>link</txtast-str></txtast-link><txtast-str>.</txtast-str></txtast-paragraph><txtast-list><txtast-listitem><txtast-paragraph><txtast-str>list1</txtast-str></txtast-paragraph></txtast-listitem><txtast-listitem><txtast-paragraph><txtast-str>list2</txtast-str></txtast-paragraph></txtast-listitem></txtast-list></txtast-document>`
         );
     });
 });
