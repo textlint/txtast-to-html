@@ -21,7 +21,7 @@ export const defaultOpenNode = (txtNode: TxtNode | TxtParentNode): string => {
             txtNode.raw
         )}</${Prefix}-${nodeType}>`;
     }
-    return `<${Prefix}-${nodeType}>`;
+    return `<${Prefix}-${nodeType} data-metadata="${escapeGoat.escape(metadata)}">`;
 };
 export const defaultCloseNode = (txtNode: TxtNode | TxtParentNode): string => {
     if (!txtNode.children) {
