@@ -1,0 +1,18 @@
+<Document><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;GitHub, thus RedCarpet, has a bug where “nested” fenced code blocks,\neven with shorter fences, can exit their actual “parent” block.&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:1,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:2,&quot;column&quot;:63}},&quot;range&quot;:[0,132]}">GitHub, thus RedCarpet, has a bug where “nested” fenced code blocks,
+even with shorter fences, can exit their actual “parent” block.</Str></Paragraph><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;Note that this bug does not occur on indented code-blocks.&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:4,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:4,&quot;column&quot;:58}},&quot;range&quot;:[134,192]}">Note that this bug does not occur on indented code-blocks.</Str></Paragraph><CodeBlock data-metadata="{&quot;lang&quot;:&quot;foo&quot;,&quot;value&quot;:&quot;```bar\nbaz\n```&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:6,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:10,&quot;column&quot;:4}},&quot;range&quot;:[194,221]}">````foo
+```bar
+baz
+```
+````</CodeBlock><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;Even with a different fence marker:&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:12,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:12,&quot;column&quot;:35}},&quot;range&quot;:[223,258]}">Even with a different fence marker:</Str></Paragraph><CodeBlock data-metadata="{&quot;lang&quot;:&quot;foo&quot;,&quot;value&quot;:&quot;~~~bar\nbaz\n~~~&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:14,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:18,&quot;column&quot;:4}},&quot;range&quot;:[260,287]}">````foo
+~~~bar
+baz
+~~~
+````</CodeBlock><Paragraph><Str data-metadata="{&quot;value&quot;:&quot;And reversed:&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:20,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:20,&quot;column&quot;:13}},&quot;range&quot;:[289,302]}">And reversed:</Str></Paragraph><CodeBlock data-metadata="{&quot;lang&quot;:&quot;foo&quot;,&quot;value&quot;:&quot;~~~bar\nbaz\n~~~&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:22,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:26,&quot;column&quot;:4}},&quot;range&quot;:[304,331]}">~~~~foo
+~~~bar
+baz
+~~~
+~~~~</CodeBlock><CodeBlock data-metadata="{&quot;lang&quot;:&quot;foo&quot;,&quot;value&quot;:&quot;```bar\nbaz\n```&quot;,&quot;loc&quot;:{&quot;start&quot;:{&quot;line&quot;:28,&quot;column&quot;:0},&quot;end&quot;:{&quot;line&quot;:32,&quot;column&quot;:4}},&quot;range&quot;:[333,360]}">~~~~foo
+```bar
+baz
+```
+~~~~</CodeBlock></Document>
