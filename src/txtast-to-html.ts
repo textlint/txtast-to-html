@@ -13,8 +13,6 @@ export const getOwnSourceStart = (node: TxtNode): string => {
     }
     const ownStart = node.range[0];
     const firstNodeStart = node.children[0].range[0];
-    console.log(ownStart, firstNodeStart);
-    console.log(node.raw);
     if (ownStart === firstNodeStart) {
         return "";
     }
