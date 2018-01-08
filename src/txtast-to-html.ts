@@ -7,6 +7,30 @@ const escapeGoat: {
 } = require("escape-goat");
 const omitKeyList = ["type", "children", "parent", "raw"];
 const Prefix = "txtast";
+export const getOwnSourceStart = (node: TxtNode): string => {
+    if (!node.children || node.children.length === 0) {
+        return node.raw;
+    }
+    const ownStart = node.range[0];
+    const firstNodeStart = node.children[0].range[0];
+    console.log(ownStart, firstNodeStart);
+    console.log(node.raw);
+    if (ownStart === firstNodeStart) {
+        return "";
+    }
+    return node.raw.slice(0, firstNodeStart - ownStart);
+};
+export const getOwnSourceEnd = (node: TxtNode): string => {
+    if (!node.children || node.children.length === 0) {
+        return node.raw;
+    }
+    const ownEnd = node.range[0];
+    const lastNodeEnd = node.children[node.children.length - 1].range[1];
+    if (ownEnd === lastNodeEnd) {
+        return "";
+    }
+    return node.raw.slice(lastNodeEnd - ownEnd);
+};
 const omitKeyReplacer = (key: string, value: any) => {
     if (omitKeyList.indexOf(key) !== -1) {
         return undefined;
@@ -21,14 +45,16 @@ export const defaultOpenNode = (txtNode: TxtNode | TxtParentNode): string => {
             txtNode.raw
         )}</${Prefix}-${nodeType}>`;
     }
-    return `<${Prefix}-${nodeType} data-metadata="${escapeGoat.escape(metadata)}">`;
+    const symbol = escapeGoat.escape(getOwnSourceStart(txtNode));
+    return `<${Prefix}-${nodeType} data-metadata="${escapeGoat.escape(metadata)}">${symbol}`;
 };
 export const defaultCloseNode = (txtNode: TxtNode | TxtParentNode): string => {
     if (!txtNode.children) {
         return "";
     }
     const nodeType = txtNode.type.toLowerCase();
-    return `</${Prefix}-${nodeType}>`;
+    const symbol = escapeGoat.escape(getOwnSourceEnd(txtNode));
+    return `${symbol}</${Prefix}-${nodeType}>`;
 };
 
 export interface ToHTMLOptions {
